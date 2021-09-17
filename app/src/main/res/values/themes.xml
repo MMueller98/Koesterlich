@@ -22,4 +22,9 @@
     <style name="Toolbar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textSize">35dp</item>
     </style>
+
+    <style name="Startpage.TitleText" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">20pt</item>
+        <item name="fontFamily">@font/main_font</item>
+    </style>
 </resources>

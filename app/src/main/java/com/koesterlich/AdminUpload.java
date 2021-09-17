@@ -71,8 +71,8 @@ public class AdminUpload extends AppCompatActivity {
         mProgressBar = findViewById(R.id.progress_bar);
 
         //Save File in folder "uploads"
-        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        mStorageRef = FirebaseStorage.getInstance().getReference("recipe_of_the_week");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("recipe_of_the_week");
 
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +150,7 @@ public class AdminUpload extends AppCompatActivity {
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+
                                     mProgressBar.setProgress(0);
                                 }
                             }, 500);

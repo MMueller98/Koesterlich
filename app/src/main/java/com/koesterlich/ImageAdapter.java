@@ -25,18 +25,35 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     private Context mContext;
     private List<Upload> mUploads;
 
+    public static final String EXTRA_MESSAGE = "com.koesterlich";
+
     public ImageAdapter(Context context, List<Upload> uploads){
         mContext = context;
         mUploads = uploads;
     }
 
 
+    @Override
+    public int getItemViewType(int position) {
+        if(position == 0){
+            return 0;
+        } else{
+            return 1;
+        }
+    }
 
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
+
+        if(viewType == 0){
+            View v = LayoutInflater.from(mContext).inflate(R.layout.recipe_of_the_week_cardview, parent, false);
+            return new ImageViewHolder(v, viewType);
+        }
         View v = LayoutInflater.from(mContext).inflate(R.layout.database_cardview, parent, false);
-        return new ImageViewHolder(v);
+        return new ImageViewHolder(v, viewType);
+
+
     }
 
     @Override
@@ -55,6 +72,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public int getItemCount() {
+
         return mUploads.size();
     }
 
@@ -64,11 +82,27 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         public ImageView imageView;
         public float x1, x2, y1, y2;
 
-        public ImageViewHolder(@NonNull View itemView) {
+        public ImageViewHolder(@NonNull View itemView, int position) {
             super(itemView);
 
-            textViewName = itemView.findViewById(R.id.text_view_title);
-            imageView = itemView.findViewById(R.id.image_view_upload);
+            if(position == 0){
+                textViewName = itemView.findViewById(R.id.roftw_text_view_title);
+                imageView = itemView.findViewById(R.id.roftw_image_view_upload);
+            }else {
+                textViewName = itemView.findViewById(R.id.text_view_title);
+                imageView = itemView.findViewById(R.id.image_view_upload);
+            }
+
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(mContext, RecipeDisplay.class);
+                    String message = textViewName.getText().toString();
+                    i.putExtra(EXTRA_MESSAGE, message);
+                    mContext.startActivity(i);
+
+                }
+            });
         }
     }
 }

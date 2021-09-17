@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="orange_main">#CC5029</color>
     <color name="orange_sub">#C65937</color>
+    <color name="recipe_of_the_week">#F1CBBF</color>
 </resources>

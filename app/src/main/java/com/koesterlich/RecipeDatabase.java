@@ -39,6 +39,9 @@ public class RecipeDatabase extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;
     private List<Upload> mUploads;
 
+    private DatabaseReference rotwDatabaseRef;
+    private List<Upload> rotwUploads;
+
     private Toolbar mToolbar;
 
 
@@ -67,12 +70,6 @@ public class RecipeDatabase extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_database);
 
         mImageView = (ImageView) findViewById(R.id.image_view_upload);
-        /*
-        ViewGroup.LayoutParams layoutParams = mImageView.getLayoutParams();
-        //layoutParams.height = (int) (layoutParams.width * SCALING_FACTOR);
-        mImageView.setLayoutParams(layoutParams);*/
-
-
 
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -85,6 +82,29 @@ public class RecipeDatabase extends AppCompatActivity {
         mUploads = new ArrayList<>();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
+        rotwUploads = new ArrayList<>();
+        rotwDatabaseRef = FirebaseDatabase.getInstance().getReference("recipe_of_the_week");
+
+
+        rotwDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot postSnapshot : snapshot.getChildren()){
+                    Upload upload = postSnapshot.getValue(Upload.class);
+                    mUploads.add(0,upload);
+                }
+
+                mAdapter = new ImageAdapter(RecipeDatabase.this,mUploads);
+                mRecyclerView.setAdapter(mAdapter);
+                mProgressCircle.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(RecipeDatabase.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                mProgressCircle.setVisibility(View.INVISIBLE);
+            }
+        });
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -107,4 +127,5 @@ public class RecipeDatabase extends AppCompatActivity {
             }
         });
     }
+
 }
