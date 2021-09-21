@@ -39,7 +39,7 @@ public class RecipeDatabase extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;
     private List<Upload> mUploads;
     private String recipeName;
-    private List<RecipeContainer> contentContainer;
+    public List<RecipeContainer> contentContainer;
     private String id_rotw;
 
 
@@ -83,7 +83,6 @@ public class RecipeDatabase extends AppCompatActivity {
         mToolbar = findViewById(R.id.database_toolbar);
         setSupportActionBar(mToolbar);
 
-        mUploads = new ArrayList<>();
         rotwUploads = new ArrayList<>();
         contentContainer = new ArrayList<>();
 
@@ -121,14 +120,14 @@ public class RecipeDatabase extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){
-
+                    mUploads = new ArrayList<>();
                     recipeName = postSnapshot.getKey();
                     for (DataSnapshot contentSnapshot : postSnapshot.getChildren()){
                         //name is used as type-variable of the image
                         Upload upload = contentSnapshot.getValue(Upload.class);
                         mUploads.add(upload);
                     }
-                    contentContainer.add(new RecipeContainer(recipeName, mUploads.get(3).getImageUrl(), mUploads.get(1).getImageUrl(),mUploads.get(0).getImageUrl(), mUploads.get(2).getImageUrl()));
+                    contentContainer.add(new RecipeContainer(recipeName, mUploads.get(3).getImageUrl(), mUploads.get(1).getImageUrl(),mUploads.get(0).getImageUrl(), mUploads.get(2).getImageUrl(), mUploads.get(0).getUploadId()));
 
                 }
 

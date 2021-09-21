@@ -25,7 +25,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     private Context mContext;
     private List<RecipeContainer> mContentContainer;
 
-    public static final String EXTRA_MESSAGE = "com.koesterlich";
+    public static final String EXTRA_MESSAGE = "com.koesterlich.RecipeDatabase";
 
     public ImageAdapter(Context context, List<RecipeContainer> uploads){
         mContext = context;
@@ -59,6 +59,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         RecipeContainer recipeCurrent = mContentContainer.get(position);
+
+        //Set attributes
+        holder.setRecipeName(recipeCurrent.getRecipeName());
+        holder.setTitleUrl(recipeCurrent.getTitleUrl());
+        holder.setIngredientsUrl(recipeCurrent.getIngredientsUrl());
+        holder.setGuidanceUrl(recipeCurrent.getGuidanceUrl());
+        holder.setNutritionUrl(recipeCurrent.getNutritionUrl());
+        holder.setImageId(recipeCurrent.getUploadId());
+
+        //Set Content to views
         holder.textViewName.setText(recipeCurrent.getRecipeName());
         Picasso.get()
                 .load(recipeCurrent.getTitleUrl())
@@ -66,8 +76,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
-
-
     }
 
     @Override
@@ -80,7 +88,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
         public TextView textViewName;
         public ImageView imageView;
-        public float x1, x2, y1, y2;
+
+
+        //Attributes from RecipeContainer
+        private String recipeName;
+        private String titleUrl;
+        private String ingredientsUrl;
+        private String guidanceUrl;
+        private String nutritionUrl;
+        private String imageId;
 
         public ImageViewHolder(@NonNull View itemView, int position) {
             super(itemView);
@@ -97,12 +113,37 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(mContext, RecipeDisplay.class);
-                    String message = textViewName.getText().toString();
-                    i.putExtra(EXTRA_MESSAGE, message);
+                    String[] data = new String[]{recipeName,titleUrl,ingredientsUrl,guidanceUrl,nutritionUrl,imageId};
+                    i.putExtra(EXTRA_MESSAGE, data);
                     mContext.startActivity(i);
 
                 }
             });
+        }
+
+        //Setters
+        public void setRecipeName(String recipeName) {
+            this.recipeName = recipeName;
+        }
+
+        public void setTitleUrl(String titleUrl) {
+            this.titleUrl = titleUrl;
+        }
+
+        public void setIngredientsUrl(String ingredientsUrl) {
+            this.ingredientsUrl = ingredientsUrl;
+        }
+
+        public void setGuidanceUrl(String guidanceUrl) {
+            this.guidanceUrl = guidanceUrl;
+        }
+
+        public void setNutritionUrl(String nutritionUrl) {
+            this.nutritionUrl = nutritionUrl;
+        }
+
+        public void setImageId(String imageId) {
+            this.imageId = imageId;
         }
     }
 }

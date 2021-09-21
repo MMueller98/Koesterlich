@@ -4,7 +4,10 @@ public class Upload {
 
     private String mName;
     private String mImageUrl;
-    private String mId;
+
+
+
+    private String mUploadId;
 
     public Upload(){
         //empty constructor needed
@@ -16,7 +19,7 @@ public class Upload {
         }
         mName = name;
         mImageUrl = ImageUrl;
-        mId = uploadId;
+        mUploadId = uploadId;
     }
 
     public String getName() {
@@ -35,8 +38,14 @@ public class Upload {
         this.mImageUrl = mImageUrl;
     }
 
-    public String getId(){
-        return mId;
+    public String getUploadId() {
+        return mUploadId;
     }
+
+    public void setUploadId(String mUploadId) {
+        this.mUploadId = mUploadId;
+    }
+
+
 
 }

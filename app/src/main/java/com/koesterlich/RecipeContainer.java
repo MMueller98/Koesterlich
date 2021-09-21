@@ -5,13 +5,18 @@ public class RecipeContainer {
     private String titleUrl;
     private String ingredientsUrl;
     private String guidanceUrl;
+    private String uploadId;
+    private String nutritionUrl;
 
-    public RecipeContainer(String recipeName, String titleUrl, String ingredientsUrl, String guidanceUrl, String nutritionUrl){
+
+
+    public RecipeContainer(String recipeName, String titleUrl, String ingredientsUrl, String guidanceUrl, String nutritionUrl, String uploadId){
         this.recipeName = recipeName;
         this.titleUrl = titleUrl;
         this.ingredientsUrl = ingredientsUrl;
         this.guidanceUrl = guidanceUrl;
         this.nutritionUrl = nutritionUrl;
+        this.uploadId = uploadId;
     }
 
 
@@ -55,6 +60,14 @@ public class RecipeContainer {
         this.nutritionUrl = nutritionUrl;
     }
 
-    private String nutritionUrl;
+    public String getUploadId() {
+        return uploadId;
+    }
+
+    public void setUploadId(String uploadId) {
+        this.uploadId = uploadId;
+    }
+
+
 
 }
