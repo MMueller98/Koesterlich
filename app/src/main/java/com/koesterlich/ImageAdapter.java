@@ -23,13 +23,13 @@ import java.util.List;
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder>{
 
     private Context mContext;
-    private List<Upload> mUploads;
+    private List<RecipeContainer> mContentContainer;
 
     public static final String EXTRA_MESSAGE = "com.koesterlich";
 
-    public ImageAdapter(Context context, List<Upload> uploads){
+    public ImageAdapter(Context context, List<RecipeContainer> uploads){
         mContext = context;
-        mUploads = uploads;
+        mContentContainer = uploads;
     }
 
 
@@ -58,10 +58,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-        Upload uploadCurrent = mUploads.get(position);
-        holder.textViewName.setText(uploadCurrent.getName());
+        RecipeContainer recipeCurrent = mContentContainer.get(position);
+        holder.textViewName.setText(recipeCurrent.getRecipeName());
         Picasso.get()
-                .load(uploadCurrent.getImageUrl())
+                .load(recipeCurrent.getTitleUrl())
                 .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .centerCrop()
@@ -73,7 +73,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public int getItemCount() {
 
-        return mUploads.size();
+        return mContentContainer.size();
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder{

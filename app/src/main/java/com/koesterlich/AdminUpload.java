@@ -160,7 +160,7 @@ public class AdminUpload extends AppCompatActivity {
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                             while(!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
-
+                            /*
                             Upload upload = new Upload(mEditTextFileName.getText().toString().trim(),
                                     downloadUrl.toString());
 

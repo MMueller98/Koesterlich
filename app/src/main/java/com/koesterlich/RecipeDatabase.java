@@ -38,8 +38,9 @@ public class RecipeDatabase extends AppCompatActivity {
 
     private DatabaseReference mDatabaseRef;
     private List<Upload> mUploads;
-    private List<String> mString;
-    private List<Boolean> mHasChild;
+    private String recipeName;
+    private List<RecipeContainer> contentContainer;
+    private String id_rotw;
 
 
     private DatabaseReference rotwDatabaseRef;
@@ -82,19 +83,19 @@ public class RecipeDatabase extends AppCompatActivity {
         mToolbar = findViewById(R.id.database_toolbar);
         setSupportActionBar(mToolbar);
 
-        mHasChild = new ArrayList<>();
-        mString = new ArrayList<>();
-
         mUploads = new ArrayList<>();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
-
         rotwUploads = new ArrayList<>();
+        contentContainer = new ArrayList<>();
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
         rotwDatabaseRef = FirebaseDatabase.getInstance().getReference("recipe_of_the_week");
 
 
+        /*
         rotwDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){
                     Upload upload = postSnapshot.getValue(Upload.class);
                     mUploads.add(0,upload);
@@ -103,6 +104,8 @@ public class RecipeDatabase extends AppCompatActivity {
                 mAdapter = new ImageAdapter(RecipeDatabase.this,mUploads);
                 mRecyclerView.setAdapter(mAdapter);
                 mProgressCircle.setVisibility(View.INVISIBLE);
+
+
             }
 
             @Override
@@ -110,23 +113,26 @@ public class RecipeDatabase extends AppCompatActivity {
                 Toast.makeText(RecipeDatabase.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
-        });
+        });*/
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
 
-            String name;
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){
 
-                    name = postSnapshot.getKey();
+                    recipeName = postSnapshot.getKey();
                     for (DataSnapshot contentSnapshot : postSnapshot.getChildren()){
+                        //name is used as type-variable of the image
                         Upload upload = contentSnapshot.getValue(Upload.class);
                         mUploads.add(upload);
                     }
+                    contentContainer.add(new RecipeContainer(recipeName, mUploads.get(3).getImageUrl(), mUploads.get(1).getImageUrl(),mUploads.get(0).getImageUrl(), mUploads.get(2).getImageUrl()));
+
                 }
 
-                mAdapter = new ImageAdapter(RecipeDatabase.this, mUploads);
+                mAdapter = new ImageAdapter(RecipeDatabase.this, contentContainer);
                 mRecyclerView.setAdapter(mAdapter);
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
