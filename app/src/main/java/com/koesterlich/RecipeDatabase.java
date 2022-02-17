@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,6 +49,8 @@ public class RecipeDatabase extends AppCompatActivity {
     private List<Upload> rotwUploads;
 
     private Toolbar mToolbar;
+
+    private Upload rotw;
 
 
     @Override
@@ -87,7 +91,7 @@ public class RecipeDatabase extends AppCompatActivity {
         contentContainer = new ArrayList<>();
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
-        rotwDatabaseRef = FirebaseDatabase.getInstance().getReference("recipe_of_the_week");
+        rotwDatabaseRef = FirebaseDatabase.getInstance().getReference("rotw");
 
 
         /*
@@ -130,6 +134,26 @@ public class RecipeDatabase extends AppCompatActivity {
                     contentContainer.add(new RecipeContainer(recipeName, mUploads.get(3).getImageUrl(), mUploads.get(1).getImageUrl(),mUploads.get(0).getImageUrl(), mUploads.get(2).getImageUrl(), mUploads.get(0).getUploadId()));
 
                 }
+
+                rotwDatabaseRef.get().addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        task.getException();
+                    }
+                    else {
+                        rotw = task.getResult().getValue(Upload.class);
+                        for(DataSnapshot rotwSnapshot : task.getResult().getChildren()){
+                            mUploads = new ArrayList<>();
+                            recipeName = rotwSnapshot.getKey();
+                            for(DataSnapshot contentSnapshot : rotwSnapshot.getChildren()){
+                                Upload upload = contentSnapshot.getValue(Upload.class);
+                                mUploads.add(upload);
+                            }
+                            contentContainer.add(0, new RecipeContainer(recipeName, mUploads.get(3).getImageUrl(), mUploads.get(1).getImageUrl(),mUploads.get(0).getImageUrl(), mUploads.get(2).getImageUrl(), mUploads.get(0).getUploadId()));
+
+                        }
+
+                    }
+                });
 
                 mAdapter = new ImageAdapter(RecipeDatabase.this, contentContainer);
                 mRecyclerView.setAdapter(mAdapter);
