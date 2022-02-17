@@ -4,7 +4,6 @@ Beschreibung
 
 ## To-DOs
 
-1. Rezept der Woche veränderlich machen
 2. Like Funktion einbauen: eigenes Kochbuch, in dem sich gelikte Rezepte speichern und abrufbar sind
 3. Zoombarkeit aktivieren 
 4.	„Secondary Text“ entfernen
