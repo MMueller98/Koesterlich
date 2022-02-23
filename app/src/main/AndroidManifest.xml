@@ -9,10 +9,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Koesterlich">
         <activity
-            android:name=".RecipeDisplay"
+            android:name=".activities.Cookbook"
             android:exported="true" />
-        <activity android:name=".AdminUpload" />
-        <activity android:name=".RecipeDatabase" />
+        <activity
+            android:name=".activities.RecipeDisplay"
+            android:exported="true" />
+        <activity android:name=".activities.RecipeDatabase" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

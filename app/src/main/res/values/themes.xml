@@ -17,6 +17,7 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="android:fontFamily">@font/main_font</item>
         <item name="android:textSize">50sp</item>
+        <item name="android:background">@color/top_bar</item>
     </style>
 
     <style name="Toolbar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">

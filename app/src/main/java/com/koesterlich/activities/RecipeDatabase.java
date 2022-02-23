@@ -1,4 +1,4 @@
-package com.koesterlich;
+package com.koesterlich.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,25 +11,24 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.koesterlich.helpers.ImageAdapter;
+import com.koesterlich.R;
+import com.koesterlich.helpers.RecipeContainer;
+import com.koesterlich.helpers.Upload;
 
 import java.util.ArrayList;
 import java.util.List;
-import android.view.MotionEvent;
 
-public class RecipeDatabase extends AppCompatActivity {
+public class RecipeDatabase extends AbstractPage {
 
     private final float SCALING_FACTOR = 4/5f;
 
@@ -52,24 +51,11 @@ public class RecipeDatabase extends AppCompatActivity {
 
     private Upload rotw;
 
+    public RecipeDatabase(){
+        super();
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.database_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        
-        int id = item.getItemId();
-        
-        if(id == R.id.menu_fav){
-            Intent i = new Intent(RecipeDatabase.this, AdminUpload.class);
-            startActivity(i);
-
-        }
-        return super.onOptionsItemSelected(item);
+        // Activity Context MUST BE SET to create menu via Abstract-Page-Class
+        this.activityContext = RecipeDatabase.this;
     }
 
     @Override
@@ -93,30 +79,6 @@ public class RecipeDatabase extends AppCompatActivity {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
         rotwDatabaseRef = FirebaseDatabase.getInstance().getReference("rotw");
 
-
-        /*
-        rotwDatabaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for(DataSnapshot postSnapshot : snapshot.getChildren()){
-                    Upload upload = postSnapshot.getValue(Upload.class);
-                    mUploads.add(0,upload);
-                }
-
-                mAdapter = new ImageAdapter(RecipeDatabase.this,mUploads);
-                mRecyclerView.setAdapter(mAdapter);
-                mProgressCircle.setVisibility(View.INVISIBLE);
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(RecipeDatabase.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                mProgressCircle.setVisibility(View.INVISIBLE);
-            }
-        });*/
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
 

@@ -1,12 +1,9 @@
-package com.koesterlich;
+package com.koesterlich.helpers;
 
 public class Upload {
 
     private String mName;
     private String mImageUrl;
-
-
-
     private String mUploadId;
 
     public Upload(){

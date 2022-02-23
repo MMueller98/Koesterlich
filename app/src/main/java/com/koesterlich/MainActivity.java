@@ -1,13 +1,12 @@
 package com.koesterlich;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
-import android.view.MotionEvent;
+
+import com.koesterlich.activities.RecipeDatabase;
 
 public class MainActivity extends AppCompatActivity {
 

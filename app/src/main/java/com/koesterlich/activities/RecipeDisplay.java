@@ -1,20 +1,14 @@
-package com.koesterlich;
+package com.koesterlich.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.github.chrisbanes.photoview.PhotoView;
-import com.github.chrisbanes.photoview.PhotoViewAttacher;
+import com.koesterlich.helpers.ImageAdapter;
+import com.koesterlich.R;
 import com.squareup.picasso.Picasso;
-
-import java.io.InputStream;
-import java.net.URL;
 
 public class RecipeDisplay extends AppCompatActivity {
 

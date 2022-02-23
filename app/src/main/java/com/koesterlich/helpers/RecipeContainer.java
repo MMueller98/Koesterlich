@@ -1,4 +1,4 @@
-package com.koesterlich;
+package com.koesterlich.helpers;
 
 public class RecipeContainer {
     private String recipeName;

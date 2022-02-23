@@ -1,9 +1,8 @@
-package com.koesterlich;
+package com.koesterlich.helpers;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -15,8 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-
-
+import com.koesterlich.R;
+import com.koesterlich.activities.RecipeDisplay;
 import com.squareup.picasso.Picasso;
 
 import java.io.BufferedReader;
@@ -33,7 +32,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     private Context mContext;
     private List<RecipeContainer> mContentContainer;
 
-    public static final String EXTRA_MESSAGE = "com.koesterlich.RecipeDatabase";
+    public static final String EXTRA_MESSAGE = "com.koesterlich.activities.RecipeDatabase";
 
     public ImageAdapter(Context context, List<RecipeContainer> uploads){
         mContext = context;
