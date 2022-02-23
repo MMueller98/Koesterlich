@@ -4,8 +4,7 @@ Beschreibung
 
 ## To-DOs
 
-1. Rezept der Woche veränderlich machen
-2. Like Funktion einbauen: eigenes Kochbuch, in dem sich gelikte Rezepte speichern und abrufbar sind
+1. Like Funktion einbauen: eigenes Kochbuch, in dem sich gelikte Rezepte speichern und abrufbar sind
 3. Zoombarkeit aktivieren 
 4.	„Secondary Text“ entfernen
 5.	Anstatt „Supporting Text“ vielleicht Schlagwörter einführen: Es gibt eine Bibliothek an Schlagwörtern, nach denen User dann auch filtern können und die könnten dann auf den ersten Blick direkt unter dem Bild angezeigt werden. Bspw: vegan, kalorienarm, Abendessen (etc.).Bisherige Vorschläge für Kategorien: vegan, vegatarisch, kalorienarm, proteinreich, Frühstück, Mittagessen, Abendessen, Snack, Nachtisch, vitaminreich, Getränke
