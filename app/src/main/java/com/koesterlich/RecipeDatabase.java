@@ -64,7 +64,7 @@ public class RecipeDatabase extends AppCompatActivity {
         
         int id = item.getItemId();
         
-        if(id == R.id.menu_add){
+        if(id == R.id.menu_fav){
             Intent i = new Intent(RecipeDatabase.this, AdminUpload.class);
             startActivity(i);
 

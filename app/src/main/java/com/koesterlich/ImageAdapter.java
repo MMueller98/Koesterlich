@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder>{
@@ -88,6 +96,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
         public TextView textViewName;
         public ImageView imageView;
+        public ImageButton favButton;
+        public ImageButton shareButton;
 
 
         //Attributes from RecipeContainer
@@ -119,6 +129,65 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
                 }
             });
+
+            // OnClickListener for favorite icon
+            favButton = itemView.findViewById(R.id.btn_favorite);
+            favButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FileOutputStream fos = null;
+                    try{
+                        fos = mContext.openFileOutput("example.txt", Context.MODE_PRIVATE);
+                        fos.write(imageId.getBytes(StandardCharsets.UTF_8));
+                    }catch (Exception e){
+
+                    }finally {
+                        if(fos != null){
+                            try {
+                                fos.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Print local data
+            shareButton = itemView.findViewById(R.id.btn_share);
+            shareButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FileInputStream fis = null;
+                    try {
+                        fis = mContext.openFileInput("example.txt");
+                        InputStreamReader isr = new InputStreamReader(fis);
+                        BufferedReader br = new BufferedReader(isr);
+                        StringBuilder sb = new StringBuilder();
+                        String text;
+
+                        while((text = br.readLine()) != null){
+                            sb.append(text).append("\n");
+
+                        }
+
+                        Toast.makeText(mContext, sb.toString(), Toast.LENGTH_SHORT).show();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }finally {
+                        if(fis != null){
+                            try{
+                                fis.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            });
+
         }
 
         //Setters

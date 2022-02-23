@@ -13,7 +13,7 @@
         android:gravity="center">
 
 
-        <ImageView
+        <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/image_view_ingredients"
             android:layout_width="match_parent"
             android:layout_height="375dp"

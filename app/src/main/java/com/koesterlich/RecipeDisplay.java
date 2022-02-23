@@ -3,12 +3,18 @@ package com.koesterlich;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.chrisbanes.photoview.PhotoView;
+import com.github.chrisbanes.photoview.PhotoViewAttacher;
 import com.squareup.picasso.Picasso;
+
+import java.io.InputStream;
+import java.net.URL;
 
 public class RecipeDisplay extends AppCompatActivity {
 
@@ -44,6 +50,8 @@ public class RecipeDisplay extends AppCompatActivity {
         guidanceUrl = data[3].toString();
         nutritionUrl = data[4].toString();
         imageId = data[5].toString();
+
+
 
         Picasso.get()
                 .load(ingredientsUrl)
