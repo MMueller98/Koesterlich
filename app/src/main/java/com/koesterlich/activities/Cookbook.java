@@ -10,18 +10,23 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.koesterlich.R;
+
+import java.util.ArrayList;
 
 public class Cookbook extends AbstractPage {
 
     private Toolbar mToolbar;
+    private Button mBtn;
 
     public Cookbook() {
         super();
 
         // Activity Context MUST BE SET to create menu via Abstract-Page-Class
-        this.activityContext = Cookbook.this;
+        setActivityContext(Cookbook.this);
     }
 
     @Override
@@ -32,6 +37,17 @@ public class Cookbook extends AbstractPage {
         // Create Top menu
         mToolbar = findViewById(R.id.database_toolbar);
         setSupportActionBar(mToolbar);
+
+        mBtn = findViewById(R.id.btn_cookbook);
+
+        mBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
 
     }
 }

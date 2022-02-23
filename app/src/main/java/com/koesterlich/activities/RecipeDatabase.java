@@ -55,7 +55,7 @@ public class RecipeDatabase extends AbstractPage {
         super();
 
         // Activity Context MUST BE SET to create menu via Abstract-Page-Class
-        this.activityContext = RecipeDatabase.this;
+        setActivityContext(RecipeDatabase.this);
     }
 
     @Override
@@ -80,9 +80,8 @@ public class RecipeDatabase extends AbstractPage {
         rotwDatabaseRef = FirebaseDatabase.getInstance().getReference("rotw");
 
 
+        // Database Query
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
-
-
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){

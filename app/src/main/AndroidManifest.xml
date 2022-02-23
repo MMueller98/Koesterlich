@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Koesterlich">
         <activity
+            android:name=".activities.Testground"
+            android:exported="true" />
+        <activity
             android:name=".activities.Cookbook"
             android:exported="true" />
         <activity
