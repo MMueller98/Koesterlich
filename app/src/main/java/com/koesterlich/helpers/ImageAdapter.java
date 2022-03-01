@@ -26,18 +26,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder>{
 
     private Context mContext;
-    private List<RecipeContainer> mContentContainer;
+    private List<Recipe> mRecipeContainer;
+    public String adapterType;
 
     public static final String EXTRA_MESSAGE = "com.koesterlich.activities.RecipeDatabase";
 
-    public ImageAdapter(Context context, List<RecipeContainer> uploads){
-        mContext = context;
-        mContentContainer = uploads;
+    public ImageAdapter(Context context, List<Recipe> recipeContainer, String type){
+        this.mContext = context;
+        this.mRecipeContainer = recipeContainer;
+        this.adapterType = type;
     }
 
     @Override
@@ -51,12 +54,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @NonNull
     @Override
-    public ImageViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
+    public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        if(viewType == 0){
-            View v = LayoutInflater.from(mContext).inflate(R.layout.recipe_of_the_week_cardview, parent, false);
-            return new ImageViewHolder(v, viewType);
-        }
+
+            if(viewType == 0){
+                View v = LayoutInflater.from(mContext).inflate(R.layout.recipe_of_the_week_cardview, parent, false);
+                return new ImageViewHolder(v, viewType);
+            }
+
+
         View v = LayoutInflater.from(mContext).inflate(R.layout.database_cardview, parent, false);
         return new ImageViewHolder(v, viewType);
 
@@ -66,20 +72,22 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-        RecipeContainer recipeCurrent = mContentContainer.get(position);
+        Recipe recipeCurrent = mRecipeContainer.get(position);
 
         //Set attributes
-        holder.setRecipeName(recipeCurrent.getRecipeName());
-        holder.setTitleUrl(recipeCurrent.getTitleUrl());
-        holder.setIngredientsUrl(recipeCurrent.getIngredientsUrl());
-        holder.setGuidanceUrl(recipeCurrent.getGuidanceUrl());
-        holder.setNutritionUrl(recipeCurrent.getNutritionUrl());
-        holder.setImageId(recipeCurrent.getUploadId());
+        holder.setRecipeTitle(recipeCurrent.getRecipeTitle());
+        holder.setUploadId(recipeCurrent.getUploadId());
+        holder.setTitleImageURL(recipeCurrent.getTitleImageURL());
+        holder.setIngredientsImageURL(recipeCurrent.getIngredientsImageURL());
+        holder.setGuidanceImageURL(recipeCurrent.getGuidanceImageURL());
+        holder.setNutritionImageURL(recipeCurrent.getNutritionImageURL());
+        holder.setRecipeStepCount(recipeCurrent.getRecipeStepCount());
+        holder.setStepByStep(recipeCurrent.getStepByStep());
 
         //Set Content to views
-        holder.textViewName.setText(recipeCurrent.getRecipeName());
+        holder.textViewName.setText(recipeCurrent.getRecipeTitle());
         Picasso.get()
-                .load(recipeCurrent.getTitleUrl())
+                .load(recipeCurrent.getTitleImageURL())
                 .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .centerCrop()
@@ -87,7 +95,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
         // Check if recipe is liked or not
         boolean liked = false;
-        for(String recipes : AbstractPage.getLikedRecipes()){
+        for(String recipes : AbstractPage.getLikedRecipesIDs()){
             if(recipes.trim().equals(recipeCurrent.getUploadId().trim())){
                 holder.favButton.setImageResource(R.drawable.ic_favorite_orange_full);
                 liked = true;
@@ -98,7 +106,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public int getItemCount() {
-        return mContentContainer.size();
+        return mRecipeContainer.size();
     }
 
     // =============================================================================================
@@ -112,12 +120,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
 
         //Attributes from RecipeContainer
-        private String recipeName;
-        private String titleUrl;
-        private String ingredientsUrl;
-        private String guidanceUrl;
-        private String nutritionUrl;
-        private String imageId;
+        private String recipeTitle;
+        private String uploadId;
+        private String titleImageURL;
+        private String ingredientsImageURL;
+        private String guidanceImageURL;
+        private String nutritionImageURL;
+        private String recipeStepCount;
+        private HashMap<String, String> stepByStep;
         private boolean isLiked;
 
 
@@ -150,8 +160,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(mContext, RecipeDisplay.class);
-                    String[] data = new String[]{recipeName,titleUrl,ingredientsUrl,guidanceUrl,nutritionUrl,imageId};
-                    i.putExtra(EXTRA_MESSAGE, data);
+                    i.putExtra("ingredientsImageURL", ingredientsImageURL);
+                    i.putExtra("guidanceImageURL", guidanceImageURL);
+                    i.putExtra("nutritionImageURL", nutritionImageURL);
                     mContext.startActivity(i);
                 }
             });
@@ -163,12 +174,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                     if(isLiked){
                         // User disliked recipe
                         favButton.setImageResource(R.drawable.ic_favorite_orange_hollow);
-                        AbstractPage.getLikedRecipes().remove(imageId);
+                        AbstractPage.getLikedRecipesIDs().remove(uploadId);
                         isLiked = false;
                     }else{
                         // User liked recipe
                         favButton.setImageResource(R.drawable.ic_favorite_orange_full);
-                        AbstractPage.getLikedRecipes().add(imageId);
+                        AbstractPage.getLikedRecipesIDs().add(uploadId);
                         isLiked = true;
                     }
                     updateLikedRecipesFile();
@@ -235,7 +246,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             // write new content
             try {
                 fos = mContext.openFileOutput(AbstractPage.likedRecipesFile, Context.MODE_APPEND);
-                for(String recipes : AbstractPage.getLikedRecipes()){
+                for(String recipes : AbstractPage.getLikedRecipesIDs()){
                     String input = recipes + "\n";
                     fos.write(input.getBytes(StandardCharsets.UTF_8));
                 }
@@ -256,35 +267,50 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
         }
 
-
-
         //Setters
-        public void setRecipeName(String recipeName) {
-            this.recipeName = recipeName;
+
+        public void setRecipeTitle(String recipeTitle) {
+            this.recipeTitle = recipeTitle;
         }
 
-        public void setTitleUrl(String titleUrl) {
-            this.titleUrl = titleUrl;
+        public void setUploadId(String uploadId) {
+            this.uploadId = uploadId;
         }
 
-        public void setIngredientsUrl(String ingredientsUrl) {
-            this.ingredientsUrl = ingredientsUrl;
+        public void setTitleImageURL(String titleImageURL) {
+            this.titleImageURL = titleImageURL;
         }
 
-        public void setGuidanceUrl(String guidanceUrl) {
-            this.guidanceUrl = guidanceUrl;
+        public void setIngredientsImageURL(String ingredientsImageURL) {
+            this.ingredientsImageURL = ingredientsImageURL;
         }
 
-        public void setNutritionUrl(String nutritionUrl) {
-            this.nutritionUrl = nutritionUrl;
+        public void setGuidanceImageURL(String guidanceImageURL) {
+            this.guidanceImageURL = guidanceImageURL;
         }
 
-        public void setImageId(String imageId) {
-            this.imageId = imageId;
+        public void setNutritionImageURL(String nutritionImageURL) {
+            this.nutritionImageURL = nutritionImageURL;
         }
 
-        public void setLiked(Boolean isLiked){
-            this.isLiked = isLiked;
+        public void setRecipeStepCount(String recipeStepCount) {
+            this.recipeStepCount = recipeStepCount;
         }
+
+        public void setStepByStep(HashMap<String, String> stepByStep) {
+            this.stepByStep = stepByStep;
+        }
+
+        public void setLiked(boolean liked) {
+            isLiked = liked;
+        }
+
+        public boolean getLiked(){
+            return this.isLiked;
+        }
+
+
+
+
     }
 }

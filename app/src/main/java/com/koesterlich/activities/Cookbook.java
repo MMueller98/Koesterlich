@@ -1,26 +1,33 @@
 package com.koesterlich.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.provider.ContactsContract;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ProgressBar;
 
 import com.koesterlich.R;
+import com.koesterlich.helpers.CookbookAdapter;
+import com.koesterlich.helpers.ImageAdapter;
+import com.koesterlich.helpers.Recipe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cookbook extends AbstractPage {
 
+    // Layout
     private Toolbar mToolbar;
-    private Button mBtn;
+    private RecyclerView mRecyclerView;
+    private ProgressBar mProgressCircle;
+
+    // Variables
+    private List<Recipe> likedRecipesContainer;
+    private CookbookAdapter mAdapter;
+    public static final String EXTRA_MESSAGE = "com.koesterlich.activities.RecipeDatabase";
 
     public Cookbook() {
         super();
@@ -34,20 +41,31 @@ public class Cookbook extends AbstractPage {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cookbook);
 
-        // Create Top menu
-        mToolbar = findViewById(R.id.database_toolbar);
+
+        // Layout
+        mRecyclerView = findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager((new LinearLayoutManager(this)));
+
+        mProgressCircle = findViewById(R.id.progress_circle);
+        mProgressCircle.setVisibility(View.INVISIBLE);
+        mToolbar = findViewById(R.id.cookbook_toolbar);
         setSupportActionBar(mToolbar);
 
-        mBtn = findViewById(R.id.btn_cookbook);
+        // Extract liked Recipes from Recipe-Container and save them in likedRecipesContainer
+        List<Recipe> recipeContainer = AbstractPage.getAllRecipes();
+        List<String> likedRecipeIDs = AbstractPage.getLikedRecipesIDs();
+        likedRecipesContainer = new ArrayList<>();
 
-        mBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+        for (Recipe recipe: recipeContainer) {
+            if(likedRecipeIDs.contains(recipe.getUploadId())){
+                likedRecipesContainer.add(recipe);
             }
-        });
+        }
 
-
-
+        // Set Images in RecyclerView
+        mAdapter = new CookbookAdapter(Cookbook.this, likedRecipesContainer, "Cookbook");
+        mRecyclerView.setAdapter(mAdapter);
+        mProgressCircle.setVisibility(View.INVISIBLE);
     }
 }

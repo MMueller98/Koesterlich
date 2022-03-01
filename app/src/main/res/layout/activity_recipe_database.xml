@@ -26,10 +26,9 @@
         android:layout_height="match_parent"
         android:focusable="true"
         android:clickable="true"
-        android:layout_below="@id/database_toolbar">
-
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_below="@id/database_toolbar"
+        android:clipToPadding="false"
+        android:paddingBottom="57dp"/>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
 
 import com.koesterlich.activities.AbstractPage;
 import com.koesterlich.activities.RecipeDatabase;
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
             while((text = br.readLine()) != null){
                 if(text != ""){
-                    AbstractPage.getLikedRecipes().add(text);
+                    AbstractPage.getLikedRecipesIDs().add(text);
                 }
             }
 

@@ -1,29 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Cookbook">
+    tools:context=".activities.RecipeDatabase">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/database_toolbar"
+        android:id="@+id/cookbook_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_constraintBottom_toTopOf="@+id/btn_cookbook"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:titleTextAppearance="@style/Toolbar.TitleText"
-        tools:layout_editor_absoluteX="0dp" />
+        />
 
-    <Button
-        android:id="@+id/btn_cookbook"
+    <TextView
+        android:id="@+id/cookbook_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mein Kochbuch"
+        android:layout_below="@id/cookbook_toolbar"
+        android:textSize="13pt"
+        android:textStyle="bold"
+        android:paddingTop="30px"
+        android:gravity="center"
+        />
+    <ProgressBar
+        android:id="@+id/progress_circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello Cookbook"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_centerInParent="true" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_below="@id/cookbook_title"
+        android:clipToPadding="false"
+        android:paddingBottom="57dp"/>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+            app:menu="@menu/database_bottom_bar"
+            />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</RelativeLayout>

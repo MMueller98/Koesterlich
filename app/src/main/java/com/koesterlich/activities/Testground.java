@@ -1,15 +1,18 @@
 package com.koesterlich.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.koesterlich.R;
+import com.koesterlich.helpers.ImageAdapter;
+import com.squareup.picasso.Picasso;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,6 +24,17 @@ public class Testground extends AbstractPage {
     Button mBtnClearLikedRecipes;
     Button mBtnShowLikedRecipes;
     Toolbar mToolbar;
+
+    //Layout Views
+    ImageView mImageViewIngredients;
+    ImageView mImageViewGuidance;
+    ImageView mImageViewNutritions;
+
+
+    //Attributes
+    private String ingredientsImageURL;
+    private String guidanceImageURL;
+    private String nutritionImageURL;
 
     public Testground() {
         super();
@@ -45,7 +59,7 @@ public class Testground extends AbstractPage {
         mBtnClearLikedRecipes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AbstractPage.setLikedRecipes(new ArrayList<String>());
+                AbstractPage.setLikedRecipesIDs(new ArrayList<String>());
                 // Clear current content
                 FileOutputStream fos = null;
                 try{
@@ -70,15 +84,13 @@ public class Testground extends AbstractPage {
             @Override
             public void onClick(View v) {
                 String output = "";
-                for(String recipe : AbstractPage.getLikedRecipes()){
+                for(String recipe : AbstractPage.getLikedRecipesIDs()){
                     output += (recipe + "\n");
                 }
 
                 Toast.makeText(Testground.this, output, Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
     }
 }

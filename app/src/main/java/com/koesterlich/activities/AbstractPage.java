@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.koesterlich.R;
+import com.koesterlich.helpers.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,8 @@ import java.util.List;
 public class AbstractPage extends AppCompatActivity {
 
     private Context activityContext;
-    private static List<String> likedRecipes = new ArrayList<>();
+    private static List<String> likedRecipesIDs = new ArrayList<>();
+    private static List<Recipe> allRecipes = new ArrayList<>();
     public static final String likedRecipesFile = "example.txt";
 
     // Create Topbar-Menu
@@ -32,8 +35,11 @@ public class AbstractPage extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.menu_fav) {
-            Intent i = new Intent(activityContext, Cookbook.class);
-            startActivity(i);
+            if(!this.getActivityContext().toString().contains("Cookbook")){
+                Intent i = new Intent(activityContext, Cookbook.class);
+                startActivity(i);
+            }
+
         }
 
         if(id == R.id.menu_test){
@@ -53,12 +59,20 @@ public class AbstractPage extends AppCompatActivity {
         this.activityContext = activityContext;
     }
 
-    public static List<String> getLikedRecipes() {
-        return likedRecipes;
+    public static List<String> getLikedRecipesIDs() {
+        return likedRecipesIDs;
     }
 
-    public static void setLikedRecipes(List<String> likedRecipes) {
-        AbstractPage.likedRecipes = likedRecipes;
+    public static void setLikedRecipesIDs(List<String> likedRecipesIDs) {
+        AbstractPage.likedRecipesIDs = likedRecipesIDs;
+    }
+
+    public static List<Recipe> getAllRecipes() {
+        return allRecipes;
+    }
+
+    public static void setAllRecipes(List<Recipe> allRecipes) {
+        AbstractPage.allRecipes = allRecipes;
     }
 
 
