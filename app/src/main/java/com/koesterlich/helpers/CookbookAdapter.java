@@ -158,6 +158,7 @@ public class CookbookAdapter extends RecyclerView.Adapter<CookbookAdapter.Recipe
             });
 
 
+            /*
             // OnClickListener for favorite icon
             favButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -176,7 +177,7 @@ public class CookbookAdapter extends RecyclerView.Adapter<CookbookAdapter.Recipe
                     updateLikedRecipesFile();
 
                 }
-            });
+            });*/
 
             // Print local data
             shareButton.setOnClickListener(new View.OnClickListener() {
