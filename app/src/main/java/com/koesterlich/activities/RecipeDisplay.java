@@ -1,20 +1,14 @@
-package com.koesterlich;
+package com.koesterlich.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.github.chrisbanes.photoview.PhotoView;
-import com.github.chrisbanes.photoview.PhotoViewAttacher;
+import com.koesterlich.helpers.ImageAdapter;
+import com.koesterlich.R;
 import com.squareup.picasso.Picasso;
-
-import java.io.InputStream;
-import java.net.URL;
 
 public class RecipeDisplay extends AppCompatActivity {
 
@@ -25,12 +19,9 @@ public class RecipeDisplay extends AppCompatActivity {
 
 
     //Attributes
-    private String recipeName;
-    private String titleUrl;
-    private String ingredientsUrl;
-    private String guidanceUrl;
-    private String imageId;
-    private String nutritionUrl;
+    private String ingredientsImageURL;
+    private String guidanceImageURL;
+    private String nutritionImageURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,31 +33,27 @@ public class RecipeDisplay extends AppCompatActivity {
         mImageViewNutritions = findViewById(R.id.image_view_nutritions);
 
         Intent intent = getIntent();
-        CharSequence[] data = intent.getCharSequenceArrayExtra(ImageAdapter.EXTRA_MESSAGE);
 
-        recipeName = data[0].toString();
-        titleUrl = data[1].toString();
-        ingredientsUrl = data[2].toString();
-        guidanceUrl = data[3].toString();
-        nutritionUrl = data[4].toString();
-        imageId = data[5].toString();
+        ingredientsImageURL = intent.getStringExtra("ingredientsImageURL");
+        guidanceImageURL = intent.getStringExtra("guidanceImageURL");
+        nutritionImageURL = intent.getStringExtra("nutritionImageURL");
 
 
 
         Picasso.get()
-                .load(ingredientsUrl)
+                .load(ingredientsImageURL)
                 .fit()
                 .centerCrop()
                 .into(mImageViewIngredients);
 
         Picasso.get()
-                .load(guidanceUrl)
+                .load(guidanceImageURL)
                 .fit()
                 .centerCrop()
                 .into(mImageViewGuidance);
 
         Picasso.get()
-                .load(nutritionUrl)
+                .load(nutritionImageURL)
                 .fit()
                 .centerCrop()
                 .into(mImageViewNutritions);
