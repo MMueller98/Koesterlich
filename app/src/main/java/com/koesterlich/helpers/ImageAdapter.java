@@ -83,6 +83,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         holder.setNutritionImageURL(recipeCurrent.getNutritionImageURL());
         holder.setRecipeStepCount(recipeCurrent.getRecipeStepCount());
         holder.setStepByStep(recipeCurrent.getStepByStep());
+        holder.setCookingTimeMinutes(recipeCurrent.getCookingTimeMinutes());
+        holder.setBuzzwordCount(recipeCurrent.getBuzzwordCount());
+        holder.setBuzzwords(recipeCurrent.getBuzzwords());
+
 
         //Set Content to views
         holder.textViewName.setText(recipeCurrent.getRecipeTitle());
@@ -92,6 +96,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
+
+        holder.textViewCookingTime.setText("Kochzeit: " + recipeCurrent.getCookingTimeMinutes() + " Minuten");
+        Integer buzzWordCount = Integer.valueOf(recipeCurrent.getBuzzwordCount());
+        String buzzWords = "";
+        for(int i = 1; i <= buzzWordCount; i++){
+            buzzWords += recipeCurrent.getBuzzwords().get("buzzword" + i) + " ,";
+        }
+        holder.textViewBuzzwords.setText(buzzWords.substring(0,buzzWords.length()-2));
+
 
         // Check if recipe is liked or not
         boolean liked = false;
@@ -114,6 +127,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public class ImageViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewName;
+        public TextView textViewCookingTime;
+        public TextView textViewBuzzwords;
         public ImageView imageView;
         public ImageButton favButton;
         public ImageButton shareButton;
@@ -122,12 +137,19 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         //Attributes from RecipeContainer
         private String recipeTitle;
         private String uploadId;
+
         private String titleImageURL;
         private String ingredientsImageURL;
         private String guidanceImageURL;
         private String nutritionImageURL;
+
         private String recipeStepCount;
         private HashMap<String, String> stepByStep;
+
+        private String cookingTimeMinutes;
+        private String buzzwordCount;
+        private HashMap<String, String> buzzwords;
+
         private boolean isLiked;
 
 
@@ -139,10 +161,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             if(position == 0){
                 textViewName = itemView.findViewById(R.id.roftw_text_view_title);
                 imageView = itemView.findViewById(R.id.roftw_image_view_upload);
+                textViewCookingTime = itemView.findViewById(R.id.rotw_textview_cookingtime);
+                textViewBuzzwords = itemView.findViewById(R.id.rotw_textvie_buzzwords);
 
             }else {
                 textViewName = itemView.findViewById(R.id.text_view_title);
                 imageView = itemView.findViewById(R.id.image_view_upload);
+                textViewCookingTime = itemView.findViewById(R.id.textview_cooking_time);
+                textViewBuzzwords = itemView.findViewById(R.id.textview_buzzwords);
             }
 
             // Items of ItemView
@@ -160,9 +186,20 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(mContext, RecipeDisplay.class);
+                    i.putExtra("uploadID", uploadId);
+                    i.putExtra("recipeTitle", recipeTitle);
+
+                    i.putExtra("titleImageURL", titleImageURL);
                     i.putExtra("ingredientsImageURL", ingredientsImageURL);
                     i.putExtra("guidanceImageURL", guidanceImageURL);
                     i.putExtra("nutritionImageURL", nutritionImageURL);
+
+                    i.putExtra("recipeStepCount", recipeStepCount);
+                    i.putExtra("stepByStep", stepByStep);
+
+                    i.putExtra("cookingTimeMinutes", cookingTimeMinutes);
+                    i.putExtra("buzzwordCount", buzzwordCount);
+                    i.putExtra("buzzwords", buzzwords);
                     mContext.startActivity(i);
                 }
             });
@@ -310,7 +347,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         }
 
 
+        public void setCookingTimeMinutes(String cookingTimeMinutes) {
+            this.cookingTimeMinutes = cookingTimeMinutes;
+        }
 
+        public void setBuzzwordCount(String buzzwordCount) {
+            this.buzzwordCount = buzzwordCount;
+        }
 
+        public void setBuzzwords(HashMap<String, String> buzzwords) {
+            this.buzzwords = buzzwords;
+        }
     }
 }

@@ -46,6 +46,7 @@ public class CookbookAdapter extends RecyclerView.Adapter<CookbookAdapter.Recipe
 
     @Override
     public int getItemViewType(int position) {
+
         if(position == 0){
             return 0;
         } else{
@@ -107,6 +108,8 @@ public class CookbookAdapter extends RecyclerView.Adapter<CookbookAdapter.Recipe
     public class RecipeHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewName;
+        public TextView textViewCookingTime;
+        public TextView textViewBuzzwords;
         public ImageView imageView;
         public ImageButton favButton;
         public ImageButton shareButton;
@@ -115,12 +118,19 @@ public class CookbookAdapter extends RecyclerView.Adapter<CookbookAdapter.Recipe
         //Attributes from RecipeContainer
         private String recipeTitle;
         private String uploadId;
+
         private String titleImageURL;
         private String ingredientsImageURL;
         private String guidanceImageURL;
         private String nutritionImageURL;
+
         private String recipeStepCount;
         private HashMap<String, String> stepByStep;
+
+        private String cookingTimeMinutes;
+        private String buzzwordCount;
+        private HashMap<String, String> buzzwords;
+
         private boolean isLiked;
 
 
@@ -152,6 +162,9 @@ public class CookbookAdapter extends RecyclerView.Adapter<CookbookAdapter.Recipe
                     i.putExtra("ingredientsImageURL", ingredientsImageURL);
                     i.putExtra("guidanceImageURL", guidanceImageURL);
                     i.putExtra("nutritionImageURL", nutritionImageURL);
+                    i.putExtra("uploadID", uploadId);
+                    i.putExtra("recipeStepCount", recipeStepCount);
+                    i.putExtra("stepByStep", stepByStep);
                     mContext.startActivity(i);
 
                 }

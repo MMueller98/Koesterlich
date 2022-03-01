@@ -12,19 +12,9 @@
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:titleTextAppearance="@style/Toolbar.TitleText"
+        app:title="Mein Kochbuch "
         />
 
-    <TextView
-        android:id="@+id/cookbook_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mein Kochbuch"
-        android:layout_below="@id/cookbook_toolbar"
-        android:textSize="13pt"
-        android:textStyle="bold"
-        android:paddingTop="30px"
-        android:gravity="center"
-        />
     <ProgressBar
         android:id="@+id/progress_circle"
         android:layout_width="wrap_content"
@@ -37,7 +27,7 @@
         android:layout_height="match_parent"
         android:focusable="true"
         android:clickable="true"
-        android:layout_below="@id/cookbook_title"
+        android:layout_below="@id/cookbook_toolbar"
         android:clipToPadding="false"
         android:paddingBottom="57dp"/>
 

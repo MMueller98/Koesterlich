@@ -8,12 +8,18 @@ public class Recipe {
 
     private String recipeTitle;
     private String uploadId;
+
     private String titleImageURL;
     private String ingredientsImageURL;
     private String guidanceImageURL;
     private String nutritionImageURL;
+
     private String recipeStepCount;
     private HashMap<String, String> stepByStep;
+
+    private String cookingTimeMinutes;
+    private String buzzwordCount;
+    private HashMap<String, String> buzzwords;
 
 
     public Recipe(){
@@ -21,7 +27,7 @@ public class Recipe {
     }
 
 
-    public Recipe(String recipeTitle, String uploadId, String titleImageURL, String ingredientsImageURL, String guidanceImageURL, String nutritionImageURL, String recipeStepCount, HashMap<String, String> stepByStep) {
+    public Recipe(String recipeTitle, String uploadId, String titleImageURL, String ingredientsImageURL, String guidanceImageURL, String nutritionImageURL, String recipeStepCount, HashMap<String, String> stepByStep, String cookingTimeMinutes, String buzzwordCount, HashMap<String, String> buzzwords) {
         this.recipeTitle = recipeTitle;
         this.uploadId = uploadId;
         this.titleImageURL = titleImageURL;
@@ -30,6 +36,9 @@ public class Recipe {
         this.nutritionImageURL = nutritionImageURL;
         this.recipeStepCount = recipeStepCount;
         this.stepByStep = stepByStep;
+        this.cookingTimeMinutes = cookingTimeMinutes;
+        this.buzzwordCount = buzzwordCount;
+        this.buzzwords = buzzwords;
     }
 
     public String getRecipeTitle() {
@@ -94,5 +103,29 @@ public class Recipe {
 
     public void setStepByStep(HashMap<String, String> stepByStep) {
         this.stepByStep = stepByStep;
+    }
+
+    public String getCookingTimeMinutes() {
+        return cookingTimeMinutes;
+    }
+
+    public void setCookingTimeMinutes(String cookingTimeMinutes) {
+        this.cookingTimeMinutes = cookingTimeMinutes;
+    }
+
+    public String getBuzzwordCount() {
+        return buzzwordCount;
+    }
+
+    public void setBuzzwordCount(String buzzwordCount) {
+        this.buzzwordCount = buzzwordCount;
+    }
+
+    public HashMap<String, String> getBuzzwords() {
+        return buzzwords;
+    }
+
+    public void setBuzzwords(HashMap<String, String> buzzwords) {
+        this.buzzwords = buzzwords;
     }
 }
