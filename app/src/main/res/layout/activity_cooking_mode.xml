@@ -37,6 +37,7 @@
         android:layout_marginTop="140px"
         android:layout_marginBottom="80px"
         android:scrollbars="vertical"
+        android:textColor="@color/black"
         />
 
     <ImageButton
@@ -65,6 +66,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="20dp"
+        android:textColor="@color/black"
          />
 
 

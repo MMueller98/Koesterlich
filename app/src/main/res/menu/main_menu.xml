@@ -4,13 +4,13 @@
     <item
         android:title="Favorite"
         android:id="@+id/menu_fav"
-        android:icon="@drawable/ic_favorite_black_full"
+        android:icon="@drawable/ic_favorite_full"
         app:showAsAction="always"/>
 
     <item
         android:title="home"
         android:id="@+id/menu_home"
-        android:icon="@drawable/ic_home_black_full"
+        android:icon="@drawable/ic_home_full"
         app:showAsAction="always"
         />
 

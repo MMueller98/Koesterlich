@@ -5,7 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +33,6 @@ public class RecipeDisplay extends AbstractPage {
     Button mStartCookingMode;
     private Toolbar mToolbar;
 
-
     //Attributes
     private String ingredientsImageURL;
     private String guidanceImageURL;
@@ -49,12 +53,26 @@ public class RecipeDisplay extends AbstractPage {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_display);
 
+
+        // get screen-size
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int dpi = getResources().getDisplayMetrics().densityDpi;
+        int widthDP = (int) (width*160)/dpi;
+
+        // set toolbar
         mToolbar = findViewById(R.id.display_toolbar);
         setSupportActionBar(mToolbar);
 
+        // set size of image-views
         mImageViewIngredients = findViewById(R.id.image_view_ingredients);
+        mImageViewIngredients.getLayoutParams().height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) (widthDP * 1.046), getResources().getDisplayMetrics());
         mImageViewGuidance = findViewById(R.id.image_view_guidance);
+        mImageViewGuidance.getLayoutParams().height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) (widthDP * 1.148), getResources().getDisplayMetrics());
         mImageViewNutritions = findViewById(R.id.image_view_nutritions);
+        mImageViewNutritions.getLayoutParams().height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) (widthDP * 1.148), getResources().getDisplayMetrics());
 
         Intent intent = getIntent();
 

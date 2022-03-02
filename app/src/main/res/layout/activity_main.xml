@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/orange_main"
+    android:background="@color/main_color"
     >
 
     <TextView
@@ -15,16 +15,16 @@
         android:layout_centerHorizontal="true"
         android:paddingTop="150dp"
         android:text="Herzlich Willkommen"
-        style="@style/Startpage.TitleText" />
+        style="@style/Startpage.TitleText"
+        android:textColor="@color/white"/>
 
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminateTint="@color/black"
         android:layout_below="@id/txt_startpage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="250dp"
-        />
+        android:indeterminateTint="@color/white"/>
 
 
 

@@ -30,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Jetzt kochen!"
+            android:textColor="@color/white"
            />
 
     </LinearLayout>
@@ -54,7 +55,7 @@
             <ImageView
                 android:id="@+id/image_view_ingredients"
                 android:layout_width="match_parent"
-                android:layout_height="410dp"
+                android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 />
@@ -62,7 +63,7 @@
             <ImageView
                 android:id="@+id/image_view_nutritions"
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
+                android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:layout_marginTop="20dp"
                 />
@@ -70,7 +71,7 @@
             <ImageView
                 android:id="@+id/image_view_guidance"
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
+                android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 />

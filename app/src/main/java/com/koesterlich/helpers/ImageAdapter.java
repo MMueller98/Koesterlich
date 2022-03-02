@@ -107,7 +107,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         boolean liked = false;
         for(String recipes : AbstractPage.getLikedRecipesIDs()){
             if(recipes.trim().equals(recipeCurrent.getUploadId().trim())){
-                holder.favButton.setImageResource(R.drawable.ic_favorite_orange_full);
+                holder.favButton.setImageResource(R.drawable.ic_favorite_maincolor_full);
                 liked = true;
             }
         }
@@ -174,9 +174,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             shareButton = itemView.findViewById(R.id.btn_share);
 
             if(isLiked){
-                favButton.setImageResource(R.drawable.ic_favorite_orange_full);
+                favButton.setImageResource(R.drawable.ic_favorite_maincolor_full);
             }else{
-                favButton.setImageResource(R.drawable.ic_favorite_orange_hollow);
+                favButton.setImageResource(R.drawable.ic_favorite_maincolor_hollow);
             }
 
             // OnClickListener for Imageview
@@ -209,12 +209,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                     public void onClick(View v) {
                         if(isLiked){
                             // User disliked recipe
-                            favButton.setImageResource(R.drawable.ic_favorite_orange_hollow);
+                            favButton.setImageResource(R.drawable.ic_favorite_maincolor_hollow);
                             AbstractPage.getLikedRecipesIDs().remove(uploadId);
                             isLiked = false;
                         }else{
                             // User liked recipe
-                            favButton.setImageResource(R.drawable.ic_favorite_orange_full);
+                            favButton.setImageResource(R.drawable.ic_favorite_maincolor_full);
                             AbstractPage.getLikedRecipesIDs().add(uploadId);
                             isLiked = true;
                         }
