@@ -29,7 +29,7 @@
         android:clickable="true"
         android:layout_below="@id/cookbook_toolbar"
         android:clipToPadding="false"
-        android:paddingBottom="57dp"/>
+        android:paddingBottom="5dp"/>
 
 
 

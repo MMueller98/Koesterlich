@@ -54,29 +54,30 @@
             <ImageView
                 android:id="@+id/image_view_ingredients"
                 android:layout_width="match_parent"
-                android:layout_height="375dp"
+                android:layout_height="410dp"
                 android:scaleType="centerCrop"
-                android:contentDescription="Image description"
-                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
                 />
 
             <ImageView
                 android:id="@+id/image_view_nutritions"
                 android:layout_width="match_parent"
-                android:layout_height="375dp"
+                android:layout_height="450dp"
                 android:scaleType="centerCrop"
-                android:contentDescription="Image description"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 />
 
             <ImageView
                 android:id="@+id/image_view_guidance"
                 android:layout_width="match_parent"
-                android:layout_height="375dp"
+                android:layout_height="450dp"
                 android:scaleType="centerCrop"
-                android:contentDescription="Image description"
-                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
                 />
+
+
+
+
 
         </LinearLayout>
 

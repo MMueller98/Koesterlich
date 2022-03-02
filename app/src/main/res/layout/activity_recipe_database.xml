@@ -29,7 +29,8 @@
         android:clickable="true"
         android:layout_below="@id/database_toolbar"
         android:clipToPadding="false"
-        android:paddingBottom="57dp"/>
+        android:paddingBottom="5dp"
+        />
 
 
 

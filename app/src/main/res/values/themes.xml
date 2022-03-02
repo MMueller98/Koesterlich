@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.Koesterlich" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/orange_main</item>
-        <item name="colorPrimaryVariant">@color/orange_sub</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/top_bar</item>
+        <item name="colorPrimaryVariant">@color/top_bar</item>
+        <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
@@ -18,15 +18,22 @@
         <item name="android:fontFamily">@font/main_font</item>
         <item name="android:textSize">50sp</item>
         <item name="android:background">@color/top_bar</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
     </style>
 
     <style name="Toolbar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textSize">35dp</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
     </style>
 
     <style name="Startpage.TitleText" parent="TextAppearance.AppCompat.Title">
         <item name="android:textSize">20pt</item>
         <item name="fontFamily">@font/main_font</item>
     </style>
+
 
 </resources>

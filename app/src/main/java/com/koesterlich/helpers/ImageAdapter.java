@@ -98,9 +98,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         Integer buzzWordCount = Integer.valueOf(recipeCurrent.getBuzzwordCount());
         String buzzWords = "";
         for(int i = 1; i <= buzzWordCount; i++){
-            buzzWords += recipeCurrent.getBuzzwords().get("buzzword" + i) + " ,";
+            buzzWords += recipeCurrent.getBuzzwords().get("buzzword" + i) + " - ";
         }
-        holder.textViewBuzzwords.setText(buzzWords.substring(0,buzzWords.length()-2));
+        holder.textViewBuzzwords.setText(buzzWords.substring(0,buzzWords.length()-3));
 
 
         // Check if recipe is liked or not
