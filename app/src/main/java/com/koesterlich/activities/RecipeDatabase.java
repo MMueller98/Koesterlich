@@ -118,7 +118,7 @@ public class RecipeDatabase extends AbstractPage {
             AbstractPage.setAllRecipes(recipeContainer);
 
             // Set Images in RecyclerView
-            mAdapter = new ImageAdapter(RecipeDatabase.this, recipeContainer, "RecipeDatabase");
+            mAdapter = new ImageAdapter(RecipeDatabase.this, recipeContainer, AbstractPage.VIEW_TYPE_RECIPE_DATABASE);
             mRecyclerView.setAdapter(mAdapter);
             mProgressCircle.setVisibility(View.INVISIBLE);
         });

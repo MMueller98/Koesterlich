@@ -19,12 +19,9 @@ import com.koesterlich.activities.AbstractPage;
 import com.koesterlich.activities.RecipeDisplay;
 import com.squareup.picasso.Picasso;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
@@ -45,28 +42,28 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public int getItemViewType(int position) {
-        if(position == 0){
-            return 0;
-        } else{
-            return 1;
+        // return 0 as View type if position is 0 at recipe-database call
+        if(this.adapterType == AbstractPage.VIEW_TYPE_RECIPE_DATABASE){
+            if(position == 0){
+                return 0;
+            }
         }
+        return 1;
     }
 
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+        // View Type 0: first element in recipe-database call
+        if(viewType == 0){
+            View v = LayoutInflater.from(mContext).inflate(R.layout.recipe_of_the_week_cardview, parent, false);
+            return new ImageViewHolder(v, viewType);
+        }
 
-            if(viewType == 0){
-                View v = LayoutInflater.from(mContext).inflate(R.layout.recipe_of_the_week_cardview, parent, false);
-                return new ImageViewHolder(v, viewType);
-            }
-
-
+        // View Type 1: every other element
         View v = LayoutInflater.from(mContext).inflate(R.layout.database_cardview, parent, false);
         return new ImageViewHolder(v, viewType);
-
-
     }
 
 
@@ -153,6 +150,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         private boolean isLiked;
 
 
+
         // Constructor
         public ImageViewHolder(@NonNull View itemView, int position) {
             super(itemView);
@@ -205,25 +203,35 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             });
 
             // OnClickListener for favorite icon
-            favButton.setOnClickListener(new View.OnClickListener() {
+            if(adapterType == AbstractPage.VIEW_TYPE_RECIPE_DATABASE){
+                favButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(isLiked){
+                            // User disliked recipe
+                            favButton.setImageResource(R.drawable.ic_favorite_orange_hollow);
+                            AbstractPage.getLikedRecipesIDs().remove(uploadId);
+                            isLiked = false;
+                        }else{
+                            // User liked recipe
+                            favButton.setImageResource(R.drawable.ic_favorite_orange_full);
+                            AbstractPage.getLikedRecipesIDs().add(uploadId);
+                            isLiked = true;
+                        }
+                        updateLikedRecipesFile();
+
+                    }
+                });
+            }
+
+            // To-Do: Implement Share-Button functionality
+            shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(isLiked){
-                        // User disliked recipe
-                        favButton.setImageResource(R.drawable.ic_favorite_orange_hollow);
-                        AbstractPage.getLikedRecipesIDs().remove(uploadId);
-                        isLiked = false;
-                    }else{
-                        // User liked recipe
-                        favButton.setImageResource(R.drawable.ic_favorite_orange_full);
-                        AbstractPage.getLikedRecipesIDs().add(uploadId);
-                        isLiked = true;
-                    }
-                    updateLikedRecipesFile();
-
+                    Toast.makeText(mContext, "Coming soon :)", Toast.LENGTH_SHORT).show();
                 }
             });
-
+            /*
             // Print local data
             shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -256,16 +264,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                         }
                     }
                 }
-            });
-        }
+            });*/
 
+        }
         // Helper-Methods
         public void updateLikedRecipesFile(){
             FileOutputStream fos = null;
 
             // Clear current content
             try{
-                fos = mContext.openFileOutput(AbstractPage.likedRecipesFile, Context.MODE_PRIVATE);
+                fos = mContext.openFileOutput(AbstractPage.LIKED_RECIPES_FILE, Context.MODE_PRIVATE);
                 String input = "";
                 fos.write(input.getBytes(StandardCharsets.UTF_8));
             }catch (Exception e){
@@ -282,7 +290,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
             // write new content
             try {
-                fos = mContext.openFileOutput(AbstractPage.likedRecipesFile, Context.MODE_APPEND);
+                fos = mContext.openFileOutput(AbstractPage.LIKED_RECIPES_FILE, Context.MODE_APPEND);
                 for(String recipes : AbstractPage.getLikedRecipesIDs()){
                     String input = recipes + "\n";
                     fos.write(input.getBytes(StandardCharsets.UTF_8));
@@ -358,5 +366,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         public void setBuzzwords(HashMap<String, String> buzzwords) {
             this.buzzwords = buzzwords;
         }
+
     }
 }

@@ -5,12 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.koesterlich.R;
-import com.koesterlich.helpers.CookbookAdapter;
 import com.koesterlich.helpers.ImageAdapter;
 import com.koesterlich.helpers.Recipe;
 
@@ -26,7 +24,7 @@ public class Cookbook extends AbstractPage {
 
     // Variables
     private List<Recipe> likedRecipesContainer;
-    private CookbookAdapter mAdapter;
+    private ImageAdapter mAdapter;
     public static final String EXTRA_MESSAGE = "com.koesterlich.activities.RecipeDatabase";
 
     public Cookbook() {
@@ -64,7 +62,7 @@ public class Cookbook extends AbstractPage {
         }
 
         // Set Images in RecyclerView
-        mAdapter = new CookbookAdapter(Cookbook.this, likedRecipesContainer, "Cookbook");
+        mAdapter = new ImageAdapter(Cookbook.this, likedRecipesContainer, AbstractPage.VIEW_TYPE_COOKBOOK);
         mRecyclerView.setAdapter(mAdapter);
         mProgressCircle.setVisibility(View.INVISIBLE);
     }

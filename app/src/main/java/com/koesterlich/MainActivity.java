@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public void readLikedRecipesTxt(){
         FileInputStream fis = null;
         try {
-            fis = mContext.openFileInput(AbstractPage.likedRecipesFile);
+            fis = mContext.openFileInput(AbstractPage.LIKED_RECIPES_FILE);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
             String text;

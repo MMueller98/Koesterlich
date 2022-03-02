@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/recipe_display_toolbar"
+        android:id="@+id/display_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/AppTheme.AppBarOverlay"
@@ -16,12 +16,33 @@
         app:title="Koesterlich "
         />
 
+    <LinearLayout
+        android:id="@+id/btn_cookNow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:id="@+id/start_cooking_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jetzt kochen!"
+           />
+
+    </LinearLayout>
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.RecipeDisplay">
+        android:layout_above="@+id/btn_cookNow"
+        android:layout_below="@+id/display_toolbar"
+        tools:context=".activities.RecipeDisplay"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,12 +51,13 @@
             android:gravity="center">
 
 
-            <com.github.chrisbanes.photoview.PhotoView
+            <ImageView
                 android:id="@+id/image_view_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="375dp"
                 android:scaleType="centerCrop"
                 android:contentDescription="Image description"
+                android:layout_marginTop="16dp"
                 />
 
             <ImageView
@@ -56,16 +78,15 @@
                 android:layout_marginTop="16dp"
                 />
 
-            <Button
-                android:id="@+id/start_cooking_mode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="KOCHMODUS"
-                />
-
         </LinearLayout>
 
     </ScrollView>
 
 
-</LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>

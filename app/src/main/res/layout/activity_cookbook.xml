@@ -31,20 +31,6 @@
         android:clipToPadding="false"
         android:paddingBottom="57dp"/>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-            app:menu="@menu/database_bottom_bar"
-            />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 </RelativeLayout>
