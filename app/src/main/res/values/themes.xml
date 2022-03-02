@@ -28,4 +28,5 @@
         <item name="android:textSize">20pt</item>
         <item name="fontFamily">@font/main_font</item>
     </style>
+
 </resources>

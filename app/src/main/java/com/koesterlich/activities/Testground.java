@@ -3,7 +3,6 @@ package com.koesterlich.activities;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.koesterlich.R;
-import com.koesterlich.helpers.ImageAdapter;
-import com.squareup.picasso.Picasso;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -63,7 +60,7 @@ public class Testground extends AbstractPage {
                 // Clear current content
                 FileOutputStream fos = null;
                 try{
-                    fos = openFileOutput(AbstractPage.likedRecipesFile, Context.MODE_PRIVATE);
+                    fos = openFileOutput(AbstractPage.LIKED_RECIPES_FILE, Context.MODE_PRIVATE);
                     String input = "";
                     fos.write(input.getBytes(StandardCharsets.UTF_8));
                 }catch (Exception e){

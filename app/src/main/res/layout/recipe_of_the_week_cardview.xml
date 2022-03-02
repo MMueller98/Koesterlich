@@ -43,6 +43,7 @@
             />
 
         <TextView
+            android:id="@+id/rotw_textview_cookingtime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -67,6 +68,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/rotw_textvie_buzzwords"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

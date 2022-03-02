@@ -17,10 +17,17 @@ import java.util.List;
 
 public class AbstractPage extends AppCompatActivity {
 
+    // Constants
+    public static final String LIKED_RECIPES_FILE = "example.txt";
+    public static final String VIEW_TYPE_RECIPE_DATABASE = "database";
+    public static final String VIEW_TYPE_COOKBOOK = "cookbook";
+
+    // Variables
     private Context activityContext;
     private static List<String> likedRecipesIDs = new ArrayList<>();
     private static List<Recipe> allRecipes = new ArrayList<>();
-    public static final String likedRecipesFile = "example.txt";
+
+
 
     // Create Topbar-Menu
     @Override
@@ -39,12 +46,13 @@ public class AbstractPage extends AppCompatActivity {
                 Intent i = new Intent(activityContext, Cookbook.class);
                 startActivity(i);
             }
-
         }
 
-        if(id == R.id.menu_test){
-            Intent i = new Intent(activityContext, Testground.class);
-            startActivity(i);
+        if(id == R.id.menu_home){
+            if(!this.getActivityContext().toString().contains("RecipeDatabase")){
+                Intent i = new Intent(activityContext, RecipeDatabase.class);
+                startActivity(i);
+            }
         }
 
         return super.onOptionsItemSelected(item);

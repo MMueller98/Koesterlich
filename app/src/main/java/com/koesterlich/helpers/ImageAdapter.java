@@ -19,12 +19,9 @@ import com.koesterlich.activities.AbstractPage;
 import com.koesterlich.activities.RecipeDisplay;
 import com.squareup.picasso.Picasso;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
@@ -45,28 +42,28 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public int getItemViewType(int position) {
-        if(position == 0){
-            return 0;
-        } else{
-            return 1;
+        // return 0 as View type if position is 0 at recipe-database call
+        if(this.adapterType == AbstractPage.VIEW_TYPE_RECIPE_DATABASE){
+            if(position == 0){
+                return 0;
+            }
         }
+        return 1;
     }
 
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+        // View Type 0: first element in recipe-database call
+        if(viewType == 0){
+            View v = LayoutInflater.from(mContext).inflate(R.layout.recipe_of_the_week_cardview, parent, false);
+            return new ImageViewHolder(v, viewType);
+        }
 
-            if(viewType == 0){
-                View v = LayoutInflater.from(mContext).inflate(R.layout.recipe_of_the_week_cardview, parent, false);
-                return new ImageViewHolder(v, viewType);
-            }
-
-
+        // View Type 1: every other element
         View v = LayoutInflater.from(mContext).inflate(R.layout.database_cardview, parent, false);
         return new ImageViewHolder(v, viewType);
-
-
     }
 
 
@@ -83,6 +80,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         holder.setNutritionImageURL(recipeCurrent.getNutritionImageURL());
         holder.setRecipeStepCount(recipeCurrent.getRecipeStepCount());
         holder.setStepByStep(recipeCurrent.getStepByStep());
+        holder.setCookingTimeMinutes(recipeCurrent.getCookingTimeMinutes());
+        holder.setBuzzwordCount(recipeCurrent.getBuzzwordCount());
+        holder.setBuzzwords(recipeCurrent.getBuzzwords());
+
 
         //Set Content to views
         holder.textViewName.setText(recipeCurrent.getRecipeTitle());
@@ -92,6 +93,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
+
+        holder.textViewCookingTime.setText("Kochzeit: " + recipeCurrent.getCookingTimeMinutes() + " Minuten");
+        Integer buzzWordCount = Integer.valueOf(recipeCurrent.getBuzzwordCount());
+        String buzzWords = "";
+        for(int i = 1; i <= buzzWordCount; i++){
+            buzzWords += recipeCurrent.getBuzzwords().get("buzzword" + i) + " ,";
+        }
+        holder.textViewBuzzwords.setText(buzzWords.substring(0,buzzWords.length()-2));
+
 
         // Check if recipe is liked or not
         boolean liked = false;
@@ -114,6 +124,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public class ImageViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewName;
+        public TextView textViewCookingTime;
+        public TextView textViewBuzzwords;
         public ImageView imageView;
         public ImageButton favButton;
         public ImageButton shareButton;
@@ -122,13 +134,21 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         //Attributes from RecipeContainer
         private String recipeTitle;
         private String uploadId;
+
         private String titleImageURL;
         private String ingredientsImageURL;
         private String guidanceImageURL;
         private String nutritionImageURL;
+
         private String recipeStepCount;
         private HashMap<String, String> stepByStep;
+
+        private String cookingTimeMinutes;
+        private String buzzwordCount;
+        private HashMap<String, String> buzzwords;
+
         private boolean isLiked;
+
 
 
         // Constructor
@@ -139,10 +159,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             if(position == 0){
                 textViewName = itemView.findViewById(R.id.roftw_text_view_title);
                 imageView = itemView.findViewById(R.id.roftw_image_view_upload);
+                textViewCookingTime = itemView.findViewById(R.id.rotw_textview_cookingtime);
+                textViewBuzzwords = itemView.findViewById(R.id.rotw_textvie_buzzwords);
 
             }else {
                 textViewName = itemView.findViewById(R.id.text_view_title);
                 imageView = itemView.findViewById(R.id.image_view_upload);
+                textViewCookingTime = itemView.findViewById(R.id.textview_cooking_time);
+                textViewBuzzwords = itemView.findViewById(R.id.textview_buzzwords);
             }
 
             // Items of ItemView
@@ -160,33 +184,54 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(mContext, RecipeDisplay.class);
+                    i.putExtra("uploadID", uploadId);
+                    i.putExtra("recipeTitle", recipeTitle);
+
+                    i.putExtra("titleImageURL", titleImageURL);
                     i.putExtra("ingredientsImageURL", ingredientsImageURL);
                     i.putExtra("guidanceImageURL", guidanceImageURL);
                     i.putExtra("nutritionImageURL", nutritionImageURL);
+
+                    i.putExtra("recipeStepCount", recipeStepCount);
+                    i.putExtra("stepByStep", stepByStep);
+
+                    i.putExtra("cookingTimeMinutes", cookingTimeMinutes);
+                    i.putExtra("buzzwordCount", buzzwordCount);
+                    i.putExtra("buzzwords", buzzwords);
                     mContext.startActivity(i);
                 }
             });
 
             // OnClickListener for favorite icon
-            favButton.setOnClickListener(new View.OnClickListener() {
+            if(adapterType == AbstractPage.VIEW_TYPE_RECIPE_DATABASE){
+                favButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(isLiked){
+                            // User disliked recipe
+                            favButton.setImageResource(R.drawable.ic_favorite_orange_hollow);
+                            AbstractPage.getLikedRecipesIDs().remove(uploadId);
+                            isLiked = false;
+                        }else{
+                            // User liked recipe
+                            favButton.setImageResource(R.drawable.ic_favorite_orange_full);
+                            AbstractPage.getLikedRecipesIDs().add(uploadId);
+                            isLiked = true;
+                        }
+                        updateLikedRecipesFile();
+
+                    }
+                });
+            }
+
+            // To-Do: Implement Share-Button functionality
+            shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(isLiked){
-                        // User disliked recipe
-                        favButton.setImageResource(R.drawable.ic_favorite_orange_hollow);
-                        AbstractPage.getLikedRecipesIDs().remove(uploadId);
-                        isLiked = false;
-                    }else{
-                        // User liked recipe
-                        favButton.setImageResource(R.drawable.ic_favorite_orange_full);
-                        AbstractPage.getLikedRecipesIDs().add(uploadId);
-                        isLiked = true;
-                    }
-                    updateLikedRecipesFile();
-
+                    Toast.makeText(mContext, "Coming soon :)", Toast.LENGTH_SHORT).show();
                 }
             });
-
+            /*
             // Print local data
             shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -219,16 +264,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                         }
                     }
                 }
-            });
-        }
+            });*/
 
+        }
         // Helper-Methods
         public void updateLikedRecipesFile(){
             FileOutputStream fos = null;
 
             // Clear current content
             try{
-                fos = mContext.openFileOutput(AbstractPage.likedRecipesFile, Context.MODE_PRIVATE);
+                fos = mContext.openFileOutput(AbstractPage.LIKED_RECIPES_FILE, Context.MODE_PRIVATE);
                 String input = "";
                 fos.write(input.getBytes(StandardCharsets.UTF_8));
             }catch (Exception e){
@@ -245,7 +290,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
             // write new content
             try {
-                fos = mContext.openFileOutput(AbstractPage.likedRecipesFile, Context.MODE_APPEND);
+                fos = mContext.openFileOutput(AbstractPage.LIKED_RECIPES_FILE, Context.MODE_APPEND);
                 for(String recipes : AbstractPage.getLikedRecipesIDs()){
                     String input = recipes + "\n";
                     fos.write(input.getBytes(StandardCharsets.UTF_8));
@@ -310,7 +355,17 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         }
 
 
+        public void setCookingTimeMinutes(String cookingTimeMinutes) {
+            this.cookingTimeMinutes = cookingTimeMinutes;
+        }
 
+        public void setBuzzwordCount(String buzzwordCount) {
+            this.buzzwordCount = buzzwordCount;
+        }
+
+        public void setBuzzwords(HashMap<String, String> buzzwords) {
+            this.buzzwords = buzzwords;
+        }
 
     }
 }
