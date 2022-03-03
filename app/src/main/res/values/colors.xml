@@ -9,5 +9,6 @@
     <color name="orange_sub">#C65937</color>
     <color name="recipe_of_the_week">@color/secondary_color</color>
     <color name="top_bar">@color/main_color</color>
+    <color name="vertical_line">#959595</color>
 
 </resources>

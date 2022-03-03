@@ -10,6 +10,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ public class CookingMode extends AbstractPage {
     private Toolbar mToolbar;
     private ImageButton btnPrev;
     private ImageButton btnNext;
+    private Button btnBackToRecipe;
 
     // Constants
     private final int NO_PREVIOUS_STEP = -1;
@@ -38,6 +40,9 @@ public class CookingMode extends AbstractPage {
     // Variables
     private String recipeStepCount;
     private HashMap<String, String> stepByStep;
+    private String ingredientsImageURL;
+    private String guidanceImageURL;
+    private String nutritionImageURL;
 
     private int currentStep;
     private int nextStep;
@@ -57,6 +62,10 @@ public class CookingMode extends AbstractPage {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cooking_mode);
 
+        // Disable lock-screen in cooking mode
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+
         // set Toolbar (menu)
         mToolbar = findViewById(R.id.database_toolbar);
         setSupportActionBar(mToolbar);
@@ -65,12 +74,16 @@ public class CookingMode extends AbstractPage {
         Intent intent = getIntent();
         recipeStepCount = intent.getStringExtra("recipeStepCount");
         stepByStep = (HashMap<String, String>) intent.getSerializableExtra("stepByStep");
+        ingredientsImageURL = intent.getStringExtra("ingredientsImageURL");
+        guidanceImageURL = intent.getStringExtra("guidanceImageURL");
+        nutritionImageURL = intent.getStringExtra("nutritionImageURL");
 
         // Get Layout-Elements
         txtCooking = findViewById(R.id.txt_cooking);
         txtHeading = findViewById(R.id.txt_heading);
         btnNext = findViewById(R.id.btn_next);
         btnPrev = findViewById(R.id.btn_prev);
+        btnBackToRecipe = findViewById(R.id.btn_backToRecipe);
 
         // Initialize Step-Counter
         currentStep = 1;
@@ -93,6 +106,19 @@ public class CookingMode extends AbstractPage {
             @Override
             public void onClick(View v) {
                 showPreviousStep();
+            }
+        });
+
+        btnBackToRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CookingMode.this, RecipeDisplay.class);
+                i.putExtra("recipeStepCount", recipeStepCount);
+                i.putExtra("stepByStep", stepByStep);
+                i.putExtra("ingredientsImageURL", ingredientsImageURL);
+                i.putExtra("guidanceImageURL", guidanceImageURL);
+                i.putExtra("nutritionImageURL", nutritionImageURL);
+                startActivity(i);
             }
         });
     }

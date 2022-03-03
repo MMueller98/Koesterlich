@@ -9,9 +9,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Koesterlich">
         <activity
+            android:name=".activities.InfoActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.CookingMode"
             android:exported="true"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activities.Testground"
             android:exported="true" />

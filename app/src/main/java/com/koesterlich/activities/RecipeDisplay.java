@@ -89,6 +89,9 @@ public class RecipeDisplay extends AbstractPage {
                 Intent i = new Intent(RecipeDisplay.this, CookingMode.class);
                 i.putExtra("recipeStepCount", recipeStepCount);
                 i.putExtra("stepByStep", stepByStep);
+                i.putExtra("ingredientsImageURL", ingredientsImageURL);
+                i.putExtra("guidanceImageURL", guidanceImageURL);
+                i.putExtra("nutritionImageURL", nutritionImageURL);
                 startActivity(i);
             }
         });

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,6 +52,11 @@ public class AbstractPage extends AppCompatActivity {
                 Intent i = new Intent(activityContext, RecipeDatabase.class);
                 startActivity(i);
             }
+        }
+
+        if(id == R.id.menu_info){
+            Intent i = new Intent(activityContext, InfoActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

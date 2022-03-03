@@ -69,5 +69,18 @@
         android:textColor="@color/black"
          />
 
+    <Button
+        android:id="@+id/btn_backToRecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zum Rezept"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btn_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toEndOf="@+id/txt_heading"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.135" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.InfoActivity"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/textView_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Definition: Schlagwörter"
+        android:textSize="15pt"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/vertical_line"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:id="@+id/simpleTableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:stretchColumns="1"> <!-- stretch the second column of the layout-->
+
+            <!-- 1. row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_17_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Abendessen"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_17_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept eignet sich besonders gut als Abendessen."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 2. row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_20_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Alkohol"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_20_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept enthält Alkohol."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 3. row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_8_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Ballaststoffe"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_8_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Die tägliche Empfehlung der Ballaststoffzufuhr beträgt 30g. Ein Rezept gilt als Ballaststoffreich, wenn es ab 301 kcal mindestens 10g Ballaststoffe enthält oder bis 300kcal mindestens 5g Ballaststoffe enthält."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 4. row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_3_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Fisch"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_3_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept enthält Fisch"
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 5. row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_4_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Fleisch"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_4_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept enthält Fleisch"
+                        android:textSize="7pt" />
+                </TableRow>
+
+                <!-- 6. row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_15_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Frühstück"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_15_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept eignet sich besonders gut als Frühstück."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 7. row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_10_1"
+                        android:layout_width="136dp"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Gemeinsames Essen"
+                        android:textSize="7pt"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/row_10_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept eignet sich besonders, um es mit Freunden oder Familie gemeinsam zu kochen und zu essen."
+                        android:textSize="7pt" />
+                </TableRow>
+
+                <!-- 8 row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_19_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Getränk"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_19_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Dieses Rezept ist ein Getränk."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 9 row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_6_1"
+                        android:layout_width="69dp"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Low Carb"
+                        android:textSize="7pt"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/row_6_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Bei einer Low Carb Diät werden deutlich weniger Kohlenhydrate konsumiert. Bei einer normalen Ernährung wird ein Kohlenhydratanteil von 55-60% empfohlen. Da der Energiebedarf individuell variiert, wird hier von einem Low Carb Rezept gesprochen, wenn weniger als 20% der aufgenommenen Kalorien durch Kohlenhydrate gedeckt werden."
+                        android:textSize="7pt" />
+                </TableRow>
+
+                <!-- INSERT -->
+                <TableRow
+                    android:id="@+id/Row22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_22_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Meal-Prep"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_22_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept eignet sich zum Meal Preppen. Das bedeutet man kann es gut im Kühlschrank aufbewahren und am nächsten Tag essen."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 10. row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_16_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Mittagessen"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_16_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept eignet sich besonders gut als Mittagessen."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 11. row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_5_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Protein"
+                        android:textSize="7pt"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/row_5_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="15% der täglich aufgenommenen Kalorien sollten durch Eiweiß aufgenommen werden, daher gilt ein Rezept hier als proteinreich, wenn mindesten 20% der aufgenommenen Kalorien durch Eiweiß gedeckt werden."
+                        android:textSize="7pt" />
+                </TableRow>
+
+                <!-- INSERT -->
+                <TableRow
+                    android:id="@+id/Row21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_21_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Schnell zubereitet"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_21_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept ist in weniger als 30 Minuten fertig."
+                        android:textSize="7pt" />
+                </TableRow>
+
+                <!-- 12 row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_18_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Snack"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_18_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept eignet sich besonders gut als Snack oder Nachtisch."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 13 row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_7_1"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Ungesättigte Fettsäuren"
+                        android:textSize="7pt"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/row_7_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Ungesättigte Fettsäuren halten uns länger satt und können bei einer insgesamt fettarmen Ernährung sogar positive Auswirkungen auf den Herzkreislauf haben. Hier wird einem Rezept dieses Schlagwort hinzugefügt, wenn Omega-3 und Omega-6 haltige Lebensmittel enthalten sind."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 14 row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_11_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Unter 200"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_11_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept hat weniger als 200 kcal pro Portion."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 15 row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_12_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Unter 300"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_12_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept hat weniger als 300 kcal pro Portion."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 16 row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_13_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Unter 400"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_13_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept hat weniger als 400 kcal pro Portion."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 17 row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_14_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Unter 500"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_14_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept hat weniger als 500 kcal pro Portion."
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 18 row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_1_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Vegan"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_1_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept enthält keinerlei tierischen Inhaltsstoffe"
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 19 row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_2_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Vegetarisch"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/row_2_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:layout_weight="1"
+                        android:text="Das Rezept enthält kein Nahrungsmittel, die von getöteten Tieren stammen"
+                        android:textSize="7pt" />
+                </TableRow>
+
+
+                <!-- 20 row of the table layout-->
+                <TableRow
+                    android:id="@+id/Row9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/row_9_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Vitaminreich"
+                        android:textSize="7pt"
+                        android:textStyle="bold"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:textSize="7pt"
+                            android:text="Der Referenzwert für Vitamine sieht wie folgt aus:"
+                            />
+
+
+                        <TableLayout
+                            android:id="@+id/inside_table_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:stretchColumns="1"> <!-- stretch the second column of the layout-->
+                            >
+
+                            <TableRow
+                                android:id="@+id/Row9_2_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/row_9_2_1_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="12dp"
+                                    android:text="Vitamin A:"
+                                    android:textSize="7pt"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/row_9_2_1_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="12dp"
+                                    android:text="2,0-4,0 mg"
+                                    android:textSize="7pt" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/Row9_2_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/row_9_2_2_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="12dp"
+                                    android:text="Vitamin D:"
+                                    android:textSize="7pt"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/row_9_2_2_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="12dp"
+                                    android:text="20 µg"
+                                    android:textSize="7pt" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/Row9_2_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/row_9_2_3_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="12dp"
+                                    android:text="Vitamin K:"
+                                    android:textSize="7pt"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/row_9_2_3_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="12dp"
+                                    android:text="60 – 80 µg"
+                                    android:textSize="7pt" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/Row9_2_4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/row_9_2_4_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="12dp"
+                                    android:text="Vitamin B1:"
+                                    android:textSize="7pt"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/row_9_2_4_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="12dp"
+                                    android:text="1,0 – 1,3 mg"
+                                    android:textSize="7pt" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/Row9_2_5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/row_9_2_5_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="12dp"
+                                    android:text="Vitamin B2:"
+                                    android:textSize="7pt"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/row_9_2_5_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="12dp"
+                                    android:text="1,2 – 15 mg"
+                                    android:textSize="7pt" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/Row9_2_6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/row_9_2_6_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="12dp"
+                                    android:text="Vitamin B3:"
+                                    android:textSize="7pt"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/row_9_2_6_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="12dp"
+                                    android:text="13 – 17 mg"
+                                    android:textSize="7pt" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/Row9_2_7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/row_9_2_7_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="12dp"
+                                    android:text="Vitamin B6:"
+                                    android:textSize="7pt"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/row_9_2_7_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="12dp"
+                                    android:text="1,2 – 1,6 mg"
+                                    android:textSize="7pt" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/Row9_2_8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/row_9_2_8_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="12dp"
+                                    android:text="Biotin (B7):"
+                                    android:textSize="7pt"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/row_9_2_8_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="12dp"
+                                    android:text="30 – 60 µg"
+                                    android:textSize="7pt" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/Row9_2_9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/row_9_2_9_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="12dp"
+                                    android:text="Folat (B9):"
+                                    android:textSize="7pt"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/row_9_2_9_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="12dp"
+                                    android:text="400 µg"
+                                    android:textSize="7pt" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/Row9_2_10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/row_9_2_10_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="12dp"
+                                    android:text="Vitamin B12:"
+                                    android:textSize="7pt"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/row_9_2_10_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="12dp"
+                                    android:text="3 µg"
+                                    android:textSize="7pt" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/Row9_2_11"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/row_9_2_11_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="12dp"
+                                    android:text="Vitamin C:"
+                                    android:textSize="7pt"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/row_9_2_11_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="12dp"
+                                    android:text="100 mg"
+                                    android:textSize="7pt" />
+
+                            </TableRow>
+
+
+                        </TableLayout>
+                    </LinearLayout>
+
+
+
+
+                </TableRow>
+
+
+            </TableLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>
