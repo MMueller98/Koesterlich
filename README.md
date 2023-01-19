@@ -1,7 +1,7 @@
 # Koesterlich
 
 Koesterlich ist eine voll funktionale Android App, in der Rezepte des Foodblogs https://www.instagram.com/koestlich_koesterlich/ veröffentlicht werden. Rezepte können im individuellen Kochbuch des Benutzers gespeichert werden, sodass alle Lieblingsrezepte an einer Stelle gesammelt werden.
-Mit einer eigenen Web-Applikation haben Administratoren die Möglichkeit neue Rezepte einzustellen. Alle Rezepte werden in einer Datenbank (Firebase) gespeichert.
+Mit einer eigenen Web-Applikation haben Administratoren die Möglichkeit neue Rezepte einzustellen. Die App ist an eine Firebase-Datenbank angebunden, in der alle Rezepte gespeichert sind.
 
 ## To-DOs
 
